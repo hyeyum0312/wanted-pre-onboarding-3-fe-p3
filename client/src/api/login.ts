@@ -14,14 +14,16 @@ export const login = async (args: LoginRequest): Promise<LoginResult> => {
   // 사용하는 기술에 맞추어 적절히 withCredential 설정하기
   const loginRes = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
+    credentials:'include',
     headers: {
       'Content-Type': 'application/json',
       credentials: 'include'
     },
     body: JSON.stringify(args)
   })
-
   console.log('loginRes>>>',loginRes)
+  const loginResJson = await loginRes.json()
+  console.log('loginResJson>>>',loginResJson)
   return loginRes.ok ? 'success' : 'fail'
 }
 
@@ -32,14 +34,17 @@ export const getCurrentUserInfo = async (): Promise<User | null> => {
   try {
     const userInfoRes = await fetch(`${ BASE_URL }/profile`, {
       method: 'GET',
+      credentials:'include',
       headers: {
         'Content-Type': 'application/json',
         credentials: 'include',
         Accept: "application/json",
       }
-    })
+    });
     console.log('userInfoRes profile',userInfoRes);
-    return userInfoRes.ok ? userInfoRes.json() : null
+    const userInfoResJson = await userInfoRes.json();
+    console.log('userInfoResJson',userInfoResJson);
+    return userInfoRes.ok ? userInfoResJson : null
   } catch (e) {
     console.error(e)
     return null
