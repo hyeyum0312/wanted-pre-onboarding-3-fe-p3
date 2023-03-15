@@ -19,7 +19,7 @@ const Login = () => {
     // TODO 3-2.: 이미 로그인된 상태라면 page-a로 라우팅
     const isUserLoggedIn: boolean = await isLoggedIn()
     if (isUserLoggedIn) {
-      routeTo('/page-a')
+      routeTo('/PageA')
       return
     }
 

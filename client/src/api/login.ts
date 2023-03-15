@@ -21,21 +21,24 @@ export const login = async (args: LoginRequest): Promise<LoginResult> => {
     body: JSON.stringify(args)
   })
 
+  console.log('loginRes>>>',loginRes)
   return loginRes.ok ? 'success' : 'fail'
 }
 
 export const getCurrentUserInfo = async (): Promise<User | null> => {
   // TODO: GET, '/profile' 호출
   // 호출 성공시 유저 정보 반환
+  console.log('TODO: GET profile 호출');
   try {
     const userInfoRes = await fetch(`${ BASE_URL }/profile`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        credentials: 'include'
+        credentials: 'include',
+        Accept: "application/json",
       }
     })
-
+    console.log('userInfoRes profile',userInfoRes);
     return userInfoRes.ok ? userInfoRes.json() : null
   } catch (e) {
     console.error(e)

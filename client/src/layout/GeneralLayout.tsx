@@ -16,7 +16,7 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({children}) => {
   const fetchUserProfile = useCallback(async () => {
     // TODO 3-2: 페이지 이동시 마다 로그인 여부를 확인하는 함수 구현
     const userProfileResponse = await getCurrentUserInfo()
-
+    console.log('userProfileResponse',userProfileResponse)
     if (userProfileResponse === null) {
       routeTo('/login')
       return
