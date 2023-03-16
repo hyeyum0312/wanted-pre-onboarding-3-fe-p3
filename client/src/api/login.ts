@@ -14,14 +14,13 @@ export const login = async (args: LoginRequest): Promise<LoginResult> => {
   // 사용하는 기술에 맞추어 적절히 withCredential 설정하기
   const loginRes = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
-    credentials:'include',
+    credentials:'include', // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     headers: {
       'Content-Type': 'application/json',
       credentials: 'include'
     },
     body: JSON.stringify(args)
   })
-  console.log('loginRes>>>',loginRes)
   const loginResJson = await loginRes.json()
   console.log('loginResJson>>>',loginResJson)
   return loginRes.ok ? 'success' : 'fail'
